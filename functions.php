@@ -43,3 +43,9 @@ function porto_deliverable_text() {
 		<?php
 	}
 }
+
+add_filter( 'woocommerce_available_variation', 'porto_get_availability', 100, 3 );
+function porto_get_availability($vars, $product, $variation) {
+	$vars['is_on_backorder'] = $variation->is_on_backorder();
+	return $vars;
+}
