@@ -22,10 +22,7 @@
         $('.single_add_to_cart_button').on('click', function (event) {
             if ($(this).is('.disabled')) {
                 event.preventDefault();
-                var msg = "Please select some product options before adding this product to your cart.";
-                if ($(this).is('.wc-variation-is-unavailable')) {
-                    msg = "Sorry, this product is unavailable. Please choose a different combination.";
-                }
+                var msg = vars.variation_msg;
                 jqAlert(msg);
                 return false;
             }
@@ -36,7 +33,6 @@
         } );
 
         $( ".single_variation_wrap" ).on( "show_variation", function ( event, variation ) {
-            console.log(variation);
             $('.deliverable-text > span').hide();
             if (variation.is_on_backorder) {
                 $('#deliver_postpone').show();

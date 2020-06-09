@@ -15,14 +15,17 @@ function porto_child_css() {
 		wp_enqueue_style( 'styles-child-rtl' );
 	}
 
-	wp_register_style('jquery-ui-pepper-grinder', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css');
-    wp_enqueue_style('jquery-ui-pepper-grinder');
+	wp_register_style('jquery-ui-smoothness', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css');
+    wp_enqueue_style('jquery-ui-smoothness');
 }
 
 add_action( 'wp_enqueue_scripts', 'porto_child_js', 1002 );
 function porto_child_js() {
 	wp_register_script( 'porto-child-js', esc_url( get_stylesheet_directory_uri() ) . '/custom.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog'), '', true);
 	wp_enqueue_script( 'porto-child-js' );
+	wp_localize_script('porto-child-js', 'vars', array(
+		'variation_msg' => __('Please select the product size before adding it into your cart.', 'porto'),
+	));
 }
 
 add_filter( 'woocommerce_before_add_to_cart_quantity', 'porto_deliverable_text', 1, 2);
