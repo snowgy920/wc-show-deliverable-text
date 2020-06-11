@@ -1,5 +1,8 @@
 <?php
 
+define('DELIVER1', 'Deliverable In 1 Day');
+define('DELIVER2', 'Deliverable In 10-15 Days');
+
 add_action( 'wp_enqueue_scripts', 'porto_child_css', 1001 );
 
 // Load CSS
@@ -34,14 +37,14 @@ function porto_deliverable_text() {
 	if ($product->is_type('simple')) {
 		?>
 		<div class="deliverable-text">
-			<span><?php echo $product->is_on_backorder() ? __('Deliverable In 10-15 Days', 'porto') : __('Deliverable In 1 Day', 'porto') ?></span>
+			<span><?php echo $product->is_on_backorder() ? __(DELIVER2, 'porto') : __(DELIVER1, 'porto') ?></span>
 		</div>
 		<?php
 	} else {
 		?>
 		<div class="deliverable-text" style="display: none">
-			<span id="deliver_avail"><?php echo __('Deliverable In 1 Day', 'porto')?></span>
-			<span id="deliver_postpone"><?php echo __('Deliverable In 10-15 Days', 'porto')?></span>
+			<span id="deliver_avail"><?php echo __(DELIVER1, 'porto')?></span>
+			<span id="deliver_postpone"><?php echo __(DELIVER2, 'porto')?></span>
 		</div>
 		<?php
 	}
